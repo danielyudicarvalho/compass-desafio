@@ -267,7 +267,7 @@
                 <button class="btn_category" onclick="getCategory('entertainment')">Entretenimento</button>
                 <button class="btn_category" onclick="getCategory('health')">Saúde</button>
                 <button class="btn_category" onclick="getCategory('business')">Negócios</button>
-                <button class="btn_category" onclick="getCategory('tecnology')">Tecnologia</button>
+                <button class="btn_category" onclick="getCategory('technology')">Tecnologia</button>
                 <button class="btn_category" onclick="getCategory('general')">Geral</button>
             </div>
              </br>
@@ -280,18 +280,7 @@
             <a href='/lista'>Lista</a>
 
             <div id="wrapper">
-                <div class="blog_post">
-                    <div class="img_pod">
-                      <img src="https://pbs.twimg.com/profile_images/890901007387025408/oztASP4n.jpg" alt="random image">
-                    </div>
-                    <div class="container_copy">
-                      <h3>Date</h3>
-                      <h1>title</h1>
-                      <p>description</p>
-                    </div>
-                    <a class="btn_primary" href='#'>Read More</a>
-                    <a class="" href='#'>Salvar</a>
-                  </div> 
+                
             </div>
         </div>
 
@@ -299,6 +288,8 @@
         <script>
 
             async function render(item){
+                const wrapper = document.getElementById('wrapper')
+                wrapper.innerHTML = ''
                 !!item && item.map(article=>{
 
                     const wrapper = document.getElementById('wrapper')
@@ -397,6 +388,7 @@
                 })
                     const result = await response.json()
 		            document.getElementById('key').value = ''
+                    render(result)
                     console.log(result)
                   
             }
