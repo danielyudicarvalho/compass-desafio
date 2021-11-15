@@ -1,7 +1,7 @@
 {
-  "name": "jera-backend",
+  "name": "compass-desafio",
   "version": "1.0.0",
-  "description": "Application of the jera challenge",
+  "description": "Compass",
   "main": "index.js",
   "scripts": {
     "start": "node src/index.js",

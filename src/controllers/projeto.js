@@ -11,6 +11,10 @@ router.get('/', async (req, res) => {
     res.sendFile(path.join(__dirname+'../../../public/index.html'));
 })
 
+router.get('/lista', async (req, res) => {
+    res.sendFile(path.join(__dirname+'../../../public/lista.html'));
+})
+
 router.get('/noticias', async (req, res) => {
     try {
         const API_KEY = '743db5d581db75b4108b77d5f629e39e'
