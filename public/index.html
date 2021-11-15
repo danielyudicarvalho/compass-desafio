@@ -291,6 +291,7 @@
 
                 const wrapper = document.getElementById('wrapper')
                 wrapper.innerHTML = ''
+
                 !!item && item.map(article=>{
 
                     const wrapper = document.getElementById('wrapper')
@@ -324,9 +325,29 @@
                     const readmore = document.createElement('a')
                     readmore.href = String(article.url)
                     readmore.target = '_blank'
+                    readmore.innerText = "Leia Mais"
                     readmore.classList.add('btn_primary')
 
                     const savebutton = document.createElement('button')
+                    savebutton.innerText = "salvar"
+
+                    savebutton.addEventListener("click",async function(){
+                        const response = await fetch('https://compass-desafio.herokuapp.com/save',{
+                            method: 'POST',
+                            headers: { 
+                                'Accept': 'application/json',
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify({
+                                'title': String(article.title),
+                                'description': String(article.description),
+                                'image': String(article.image),
+                                'url': String(article.url),
+                                'published_at': String(article.published_at)
+                            }),
+                        })
+                const result = await response.json()
+                    })
 
 
                     blogpost.appendChild(image)
