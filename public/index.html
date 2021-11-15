@@ -6,10 +6,114 @@
         <title>MediaStack</title>
         <link href="./style/index.css">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+        <style>
+            html, body{
+                display: flex;
+                justify-content: center;
+                height: 100%;
+                font-family: Roboto, Arial, sans-serif;
+                font-size: 16px;
+                color: #666;
+            }
+    
+            .struct{
+                display: block;
+                margin: auto;
+            }
+    
+            .block1{
+                    display: inline;
+            }
+    
+            .title{
+                text-align: center;
+            }
+    
+            #background{
+                background-color: #D9AFD9;
+                background-image: linear-gradient(0deg, #D9AFD9 0%, #97D9E1 100%);
+            }
+    
+            .content{
+                padding: 10px 0;
+                margin: auto;
+                border-radius: 4px; 
+                border: solid 1px #7d72c6;
+                box-shadow: 1px 2px 5px rgba(0,0,0,.31);
+                display: flex;
+                width: 900px;
+                height: 300px;
+                justify-content: space-between;
+                margin: auto;
+            }
+    
+                .input{
+                    width: 100px;
+                    height: auto;
+                    flex-grow: 10;
+                    justify-content: center;
+                    align-items: center;
+                    display: flex;
+                }
+    
+                .form{
+                    width: 400px;
+                    display: flex;
+                    justify-content: space-between;
+                    margin: auto;
+                }
+    
+                .button{
+                    margin-left: 15px;
+                }
+    
+                .ip{
+                    flex-grow: 10;
+                }
+    
+                span{
+                    font-family: "Trebuchet MS", Helvetica, sans-serif;
+                    font-size: 70px;
+                    letter-spacing: -2.2px;
+                    word-spacing: 2px;
+                    color: #000000;
+                    font-weight: 700;
+                    text-decoration: none;
+                    font-style: normal;
+                    font-variant: normal;
+                    text-transform: uppercase;
+                }
+    
+                .response{
+                    margin: auto;
+                    border-radius: 5px; 
+                    background-color: whitesmoke;
+                    width: 100px;
+                    height: 100%;
+                    flex-grow: 10;
+                    margin-left: 15px;
+                    margin-right: 15px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    text-align: center;
+                }
+    
+                .test_style{
+                    font-family: Arial, Helvetica, sans-serif;
+                    font-size: 16px;
+                    letter-spacing: 1px;
+                    word-spacing: 2px;
+                    color: #000000;
+                    font-weight: 700;
+                    text-decoration: none solid rgb(68, 68, 68);
+                    font-style: normal;
+                    font-variant: small-caps;
+                    text-transform: none;
+                }
+        </style>
     </head>
-    <style>
-
-    </style>
+   
 
     <body id="background">
         <div class="struct">
@@ -19,31 +123,75 @@
                 </div>
             </div>
             <div id="categoria">
-                <button>Esportes</button>
-                <button>Ciência</button>
-                <button>Entretenimento</button>
-                <button>Saúde</button>
-                <button>Negócios</button>
-                <button>Tecnologia</button>
-                <button>Geral</button>
+                <button onclick="getCategory('sports')">Esportes</button>
+                <button onclick="getCategory('science')">Ciência</button>
+                <button onclick="getCategory('entertainment')">Entretenimento</button>
+                <button onclick="getCategory('health')">Saúde</button>
+                <button onclick="getCategory('business')">Negócios</button>
+                <button onclick="getCategory('tecnology')">Tecnologia</button>
+                <button onclick="getCategory('general')">Geral</button>
             </div>
             <div id="keywords">
                 <input type="text" id="keywords" placeholder="keyword"/> 
-                <button type="submit">Submit</button>
+                <button type="button" onclick="getKeyword()">Submit</button>
             </div>
 
             <a href='/lista'>Lista</a>
 
             <div id="news-box">
-                <div>
-
-                </div>
-
             </div>
         </div>
 
 
-        <script type='module' src="./js/index.js">
+        <script>
+            async function getData(){
+            const id = document.getElementById('keywords')
+            const response = await fetch('http://localhost:3000/noticias',{
+                    method: 'GET',
+                    headers: { 
+                                'Accept': 'application/json',
+                                'Content-Type': 'application/json'
+                    },
+                 
+                    })
+                        const result = await response.json()
+                        console.log(result)
+                        console.log(id)
+                    }
+
+            async function getCategory(category){
+                const id = document.getElementById('keywords')
+                const response = await fetch('http://localhost:3000/keyword',{
+                    method: 'POST',
+                    headers: { 
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        'categoria': String(category)
+                    }),
+                })
+                const result = await response.json()
+                console.log(result)
+                console.log(id)
+            }
+
+            async function getKeyword(){
+                const key = document.getElementById('keywords').textContent
+                const response = await fetch('http://localhost:3000/keyword',{
+                    method: 'POST',
+                    headers: { 
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        'keyword': String(key)
+                    }),
+                })
+                    const result = await response.json()
+                    console.log(result)
+                    console.log(id)
+            }
 
 
         </script>
