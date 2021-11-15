@@ -5,7 +5,12 @@ const Articles = require('../models/articles')
 
 const router = express.Router()
 
+
 router.get('/', async (req, res) => {
+    res.sendFile(path.join(__dirname+'public/index.html'));
+})
+
+router.get('/noticias', async (req, res) => {
     try {
         const API_KEY = '743db5d581db75b4108b77d5f629e39e'
         //extraindo os dados da api
@@ -69,6 +74,18 @@ router.post('/save', async (req, res) =>{
 router.post('/saved', async (req, res) =>{
     try {
         const response = await Articles.find()
+        //extraindo os dados da api
+        res.json(response)  
+
+    } catch (error) {
+        console.log(error)
+    }
+    
+})
+
+router.post('/delete', async (req, res) =>{
+    try {
+        const response = await Articles.deleteMany()
         //extraindo os dados da api
         res.json(response)  
 
