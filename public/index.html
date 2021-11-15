@@ -288,6 +288,7 @@
         <script>
 
             async function render(item){
+
                 const wrapper = document.getElementById('wrapper')
                 wrapper.innerHTML = ''
                 !!item && item.map(article=>{
@@ -388,8 +389,8 @@
                 })
                     const result = await response.json()
 		            document.getElementById('key').value = ''
+
                     render(result)
-                    console.log(result)
                   
             }
 
