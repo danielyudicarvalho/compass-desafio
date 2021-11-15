@@ -131,7 +131,7 @@
                 <button onclick="getCategory('general')">Geral</button>
             </div>
             <div id="keywords">
-                <input type="text" id="keywords" placeholder="keyword"/> 
+                <input type="text" id="key" placeholder="palavra-chave"/> 
                 <button type="button" onclick="getKeyword()">Submit</button>
             </div>
 
@@ -176,7 +176,7 @@
             }
 
             async function getKeyword(){
-                const key = document.getElementById('keywords').value
+                const key = document.getElementById('key').value
            
 		console.log(key)
                 const response = await fetch('https://compass-desafio.herokuapp.com/keyword',{
@@ -186,11 +186,11 @@
                         'Content-Type': 'application/json'
                     },
                     body: JSON.stringify({
-                        'keyword': String(value)
+                        'keyword': String(key)
                     }),
                 })
                     const result = await response.json()
-		    document.getElementById('keywords').value = ''
+		    document.getElementById('key').value = ''
                     console.log(result)
                   
             }
