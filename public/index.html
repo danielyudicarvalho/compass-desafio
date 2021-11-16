@@ -21,6 +21,10 @@
                 font-family: 'Roboto', sans-serif;
                 font-size: 16px;
             }
+
+            a{
+                margin-top:35px;
+            }
     
             .struct{
                 display: block;
@@ -122,6 +126,7 @@
                 #wrapper {
                     height: 100%;
                     height: 100vh;
+                    margin-top: 75px;
                 }
 
                 .blog_post {
@@ -137,12 +142,14 @@
                 }
 
                 .img_pod {
-                    height: 110px;
-                    width: 110px;
+                    max-height: 110px;
+                    max-width: 110px;
+                    height: 25px;
+                    width: 25px;
                     background: linear-gradient(90deg, #ff9966, #ff5e62);
                     z-index: -1;
                     box-shadow: 1px 1px 2rem rgba(0, 0, 0, 0.3);
-                    border-radius: 100%;
+                    border-radius: 15%;
                     position: absolute;
                     left: -50px;
                     top: 10px;
@@ -150,13 +157,13 @@
                 }
 
                 img {
-                    height: 100px;
-                    width: 100px;
+                    max-width:300px;
+                    max-height: 400px;
                     position: relative;
                     top: 50%;
                     left: 50%;
                     transform: translate(-50%, -50%);
-                    border-radius: 100%;
+                    border-radius: 25%;
                     box-shadow: 1px 1px 2rem rgba(0, 0, 0, 0.3);
                 }
 
@@ -182,19 +189,21 @@
                 .btn_primary {
                     border: none;
                     outline: none;
-                    background: linear-gradient(90deg, #ff9966, #ff5e62);
+                    margin-left: 10px;
+                    width: 200px;
                     padding: 1.5rem 2rem;
-                    border-radius: 50px;
+                    border-radius: 25px;
                     color: white;
                     font-size: 1.2rem;
                     box-shadow: 1px 10px 2rem rgba(255, 94, 98, 0.5);
                     transition: all .2s ease-in;
                     text-decoration: none;
+                    background-color: #045de9;
+                    background-image: linear-gradient(315deg, #045de9 0%, #09c6f9 74%);
                 }
                 .btn_category {
                     border: none;
                     outline: none;
-                    background: linear-gradient(90deg, #ff9966, #ff5e62);
                     width:200px;
                     padding: 1.5rem 2rem;
                     border-radius: 50px;
@@ -203,13 +212,14 @@
                     box-shadow: 1px 10px 2rem rgba(255, 94, 98, 0.5);
                     transition: all .2s ease-in;
                     text-decoration: none;
+                    background-color: #045de9;
+                    background-image: linear-gradient(315deg, #045de9 0%, #09c6f9 74%);
                 }
 
                 .btn_keyword{
                     border: none;
                     margin-top: 10px;
                     outline: none;
-                    background: linear-gradient(90deg, #ff9966, #ff5e62);
                     width:200px;
                     height: 55px;
                     padding: 1.5rem 2rem;
@@ -219,6 +229,8 @@
                     box-shadow: 1px 10px 2rem rgba(255, 94, 98, 0.5);
                     transition: all .2s ease-in;
                     text-decoration: none;
+                    background-color: #045de9;
+                    background-image: linear-gradient(315deg, #045de9 0%, #09c6f9 74%);
                 }
 
                 .btn_primary:hover {
@@ -262,22 +274,23 @@
                 </div>
             </div>
             <div id="categoria">
-                <button class="btn_category" onclick="getCategory('sports')">Esportes</button>
-                <button class="btn_category" onclick="getCategory('science')">Ciência</button>
-                <button class="btn_category" onclick="getCategory('entertainment')">Entretenimento</button>
-                <button class="btn_category" onclick="getCategory('health')">Saúde</button>
-                <button class="btn_category" onclick="getCategory('business')">Negócios</button>
-                <button class="btn_category" onclick="getCategory('technology')">Tecnologia</button>
-                <button class="btn_category" onclick="getCategory('general')">Geral</button>
+                <button class="btn_primary" onclick="getCategory('sports')">Esportes</button>
+                <button class="btn_primary" onclick="getCategory('science')">Ciência</button>
+                <button class="btn_primary" onclick="getCategory('entertainment')">Entretenimento</button>
+                <button class="btn_primary" onclick="getCategory('health')">Saúde</button>
+                <button class="btn_primary" onclick="getCategory('business')">Negócios</button>
+                <button class="btn_primary" onclick="getCategory('technology')">Tecnologia</button>
+                <button class="btn_primary" onclick="getCategory('general')">Geral</button>
             </div>
              </br>
              </br>
             <div id="keywords">
-                <input type="text" id="key" placeholder="palavra-chave"/> 
-                <button class="btn_keyword" type="button" onclick="getKeyword()">Submit</button>
+                <input type="text" id="key" placeholder="palavra-chave"/></br>
+                <button class="btn_primary" type="button" onclick="getKeyword()">Submit</button>
+                <a class="btn_primary" href='/lista'>Lista</a>
             </div>
 
-            <a href='/lista'>Lista</a>
+            
 
             <div id="wrapper">
                 
@@ -330,6 +343,7 @@
 
                     const savebutton = document.createElement('button')
                     savebutton.innerText = "salvar"
+                    savebutton.classList.add('btn_primary')
 
                     savebutton.addEventListener("click",async function(){
                         const response = await fetch('https://compass-desafio.herokuapp.com/save',{
