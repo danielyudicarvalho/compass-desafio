@@ -312,18 +312,22 @@
                     const blogpost = document.createElement('div')
                     blogpost.classList.add('blog_spot')
 
-                    const imgpod = document.createElement('div')
-                    const image = document.createElement('img')
-                    image.src= article.image
-                    imgpod.classList.add('img_pod')
-                    imgpod.appendChild(image)
+                    if(article.image){
+                        const imgpod = document.createElement('div')
+                        const image = document.createElement('img')
+                        image.src= article.image
+                        imgpod.classList.add('img_pod')
+                        imgpod.appendChild(image)
+                        blogpost.appendChild(image)
+                    }
+                   
 
 
                     const containercopy = document.createElement('div')
                     containercopy.classList.add('container_copy')
 
                     const date = document.createElement('h3')
-                    date.innerText = String(article.published_at)
+                    date.innerText = new Date(article.published_at)
 
                     const title = document.createElement('h1')
                     title.innerText = String(article.title)
@@ -364,7 +368,7 @@
                     })
 
 
-                    blogpost.appendChild(image)
+                   
                     blogpost.appendChild(containercopy)
                     blogpost.appendChild(readmore)
                     blogpost.appendChild(savebutton)
